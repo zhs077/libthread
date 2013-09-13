@@ -402,7 +402,7 @@ void un_cond_broadcast (un_cond_t* cond)
 		SetEvent(cond->fall_.broadcas_event_);
 }
 
-int un_barrier(un_barrier_t* barrier,unsigned int wait_count_)
+int un_barrier_init(un_barrier_t* barrier,unsigned int wait_count_)
 {
 	int err;
 	barrier->wait_count_ = wait_count_;
@@ -430,11 +430,31 @@ error2:
 }
 void un_barrier_destroy(un_barrier_t* barrier)
 {
-	un_mutex_destroy((&barrier->mutex));
-	un_sem_destroy(&barrier->sem1);
 	un_sem_destroy(&barrier->sem2);
+	un_sem_destroy(&barrier->sem1);
+	un_mutex_destroy((&barrier->mutex));
 }
 void un_barrier_wait(un_barrier_t* barrier)
 {
+	un_mutex_lock(&barrier->mutex);
+	if(++barrier->current_wait_ == barrier->wait_count_)
+	{
+		un_sem_wait(&barrier->sem2);
+		un_sem_post(&barrier->sem1);
+	}
+	un_mutex_unlock(&barrier->mutex);
+
+	un_sem_wait(&barrier->sem1);
+	un_sem_post(&barrier->sem1);
+
+	un_mutex_lock(&barrier->mutex);
+	if(--barrier->current_wait_ == 0)
+	{
+		un_sem_wait(&barrier->sem1);
+		un_sem_post(&barrier->sem2);
+	}
+	un_mutex_unlock(&barrier->mutex);
+	un_sem_wait(&barrier->sem2);
+	un_sem_post(&barrier->sem2);
 
 }
