@@ -1,6 +1,7 @@
 #ifndef _UN_H_
 #define _UN_H_
 #include <stdlib.h>
+#include <stdint.h>
 #include "un_common.h"
 #ifdef WIN32
 #include "un-win.h"
@@ -40,6 +41,12 @@ extern "C"{
 	int un_sem_trywait(un_sem_t* sem);
 
 	//фауо
+
+	int un_barrier_init(un_barrier_t* barrier,unsigned int wait_count_);
+	void un_barrier_destroy(un_barrier_t* barrier);
+	void un_barrier_wait(un_barrier_t* barrier);
+
+	void un_sleep(uint64_t millseconds);
 
 
 

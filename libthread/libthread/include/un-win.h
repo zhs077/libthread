@@ -41,7 +41,7 @@ typedef struct
 	un_sem_t  sem1;
 	un_sem_t sem2;
 	unsigned int  wait_count_;
-	int current_wait_;
+	unsigned int current_wait_;
 
 
 }un_barrier_t;

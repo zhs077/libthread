@@ -56,7 +56,7 @@
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
       <AdditionalIncludeDirectories>.\src\win32;.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
@@ -94,10 +94,13 @@
     <ClInclude Include="src\win32\winapi.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\un_common.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="src\win32\error.c" />
     <ClCompile Include="src\win32\thread.c" />
     <ClCompile Include="src\win32\winapi.c" />
+    <ClCompile Include="test\test_barrier.c" />
+    <ClCompile Include="test\test_cond.c" />
     <ClCompile Include="test\test_rdwrlock.c" />
     <ClCompile Include="test\test_mutex.c" />
     <ClCompile Include="test\test_sem.c" />

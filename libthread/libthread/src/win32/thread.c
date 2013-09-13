@@ -330,8 +330,15 @@ void un_cond_wait(un_cond_t* cond,un_mutex_t* mutex)
 {
 	if (HAVA_COND_API())
 	{
-		if(!pSleepConditionVariableCS(&cond->cond,mutex,INFINITE));
-		abort();
+		if(!pSleepConditionVariableCS(&cond->cond,mutex,INFINITE))
+		{
+			int e = GetLastError();
+
+
+		}
+
+
+		//abort();
 	}
 	else
 	{
@@ -384,22 +391,39 @@ void un_cond_wait(un_cond_t* cond,un_mutex_t* mutex)
 
 void un_cond_signal(un_cond_t* cond)
 {
-	int have_waits;
-	EnterCriticalSection(&cond->fall_.waiters_count_lock_);
-	have_waits = cond->fall_.wait_count_ > 0;
-	LeaveCriticalSection(&cond->fall_.waiters_count_lock_);
-	if (have_waits)
-	SetEvent(cond->fall_.signal_event_);
+	if(HAVA_COND_API())
+	{
+		pWakeConditionVariable(&cond->cond);
+	}
+	else
+	{
+		int have_waits;
+		EnterCriticalSection(&cond->fall_.waiters_count_lock_);
+		have_waits = cond->fall_.wait_count_ > 0;
+		LeaveCriticalSection(&cond->fall_.waiters_count_lock_);
+		if (have_waits)
+			SetEvent(cond->fall_.signal_event_);
+		
+	}
+	
 }
 
 void un_cond_broadcast (un_cond_t* cond)
 {
-	int have_waits;
-	EnterCriticalSection(&cond->fall_.waiters_count_lock_);
-	have_waits = cond->fall_.wait_count_ > 0;
-	LeaveCriticalSection(&cond->fall_.waiters_count_lock_);
-	if (have_waits)
-		SetEvent(cond->fall_.broadcas_event_);
+	if(HAVA_COND_API())
+	{
+		pWakeAllConditionVariable(&cond->cond);
+	}
+	else
+	{
+		int have_waits;
+		EnterCriticalSection(&cond->fall_.waiters_count_lock_);
+		have_waits = cond->fall_.wait_count_ > 0;
+		LeaveCriticalSection(&cond->fall_.waiters_count_lock_);
+		if (have_waits)
+			SetEvent(cond->fall_.broadcas_event_);
+	}
+	
 }
 
 int un_barrier_init(un_barrier_t* barrier,unsigned int wait_count_)

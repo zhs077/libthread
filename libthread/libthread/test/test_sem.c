@@ -100,10 +100,10 @@ void testSem()
 	un_sem_destroy(&full_sem);
 	un_sem_destroy(&empty_sem);
 }
-int main()
-{
-	
-	testSem();
-
-	return 0;
-}
+// int main()
+// {
+// 	
+// 	testSem();
+// 
+// 	return 0;
+// }

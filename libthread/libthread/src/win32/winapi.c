@@ -39,3 +39,18 @@ int init_winapi()
 	pWakeAllConditionVariable = (sWakeAllConditionVariable)GetProcAddress(kernel32_module,"WakeAllConditionVariable");
 	return 0;
 }
+
+//pInitializeConditionVariable = (sInitializeConditionVariable)
+//	GetProcAddress(kernel32_module, "InitializeConditionVariable");
+//
+//pSleepConditionVariableCS = (sSleepConditionVariableCS)
+//	GetProcAddress(kernel32_module, "SleepConditionVariableCS");
+//
+//pSleepConditionVariableSRW = (sSleepConditionVariableSRW)
+//	GetProcAddress(kernel32_module, "SleepConditionVariableSRW");
+//
+//pWakeAllConditionVariable = (sWakeAllConditionVariable)
+//	GetProcAddress(kernel32_module, "WakeAllConditionVariable");
+//
+//pWakeConditionVariable = (sWakeConditionVariable)
+//	GetProcAddress(kernel32_module, "WakeConditionVariable");

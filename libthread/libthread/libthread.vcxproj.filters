@@ -71,5 +71,14 @@
     <ClCompile Include="src\win32\error.c">
       <Filter>src\win32</Filter>
     </ClCompile>
+    <ClCompile Include="test\test_barrier.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="include\un_common.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test_cond.c">
+      <Filter>test</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
