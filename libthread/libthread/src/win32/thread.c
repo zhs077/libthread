@@ -428,3 +428,13 @@ error2:
 
 	
 }
+void un_barrier_destroy(un_barrier_t* barrier)
+{
+	un_mutex_destroy((&barrier->mutex));
+	un_sem_destroy(&barrier->sem1);
+	un_sem_destroy(&barrier->sem2);
+}
+void un_barrier_wait(un_barrier_t* barrier)
+{
+
+}

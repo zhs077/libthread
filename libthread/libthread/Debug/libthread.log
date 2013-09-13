@@ -1,28 +1,29 @@
-﻿生成启动时间为 2013/9/9 19:41:34。
-     1>项目“H:\C++程序\libThread\libthread\libthread.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2013/9/13 12:00:50。
+     1>项目“D:\VC程序\libthread_v1.0\libthread\libthread\libthread\libthread.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>C:\Program Files\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppClean.targets(75,5): warning : 文件“D:\VC程序\libthread_v1.0\libthread\libthread\libthread\Debug\vc110.idb”正由另一进程使用，因此该进程无法访问此文件。
      1>ClCompile:
-         F:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I.\src\win32 /I.\include /ZI /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:prompt main.c src\win32\error.c src\win32\thread.c src\win32\winapi.c test\test_mutex.c test\test_rdwrlock.c test\test_sem.c test\test_thread.c
+         E:\Program Files\VC\bin\CL.exe /c /I.\src\win32 /I.\include /ZI /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:prompt main.c src\win32\error.c src\win32\thread.c src\win32\winapi.c test\test_rdwrlock.c test\test_mutex.c test\test_sem.c test\test_thread.c
          test_thread.c
          test_sem.c
-     1>h:\c++程序\libthread\libthread\test\test_sem.c(29): warning C4127: 条件表达式是常量
-     1>h:\c++程序\libthread\libthread\test\test_sem.c(26): warning C4100: “arg”: 未引用的形参
-     1>h:\c++程序\libthread\libthread\test\test_sem.c(49): warning C4127: 条件表达式是常量
-     1>h:\c++程序\libthread\libthread\test\test_sem.c(46): warning C4100: “arg”: 未引用的形参
-         test_rdwrlock.c
+     1>d:\vc程序\libthread_v1.0\libthread\libthread\libthread\test\test_sem.c(29): warning C4127: 条件表达式是常量
+     1>d:\vc程序\libthread_v1.0\libthread\libthread\libthread\test\test_sem.c(26): warning C4100: “arg”: 未引用的形参
+     1>d:\vc程序\libthread_v1.0\libthread\libthread\libthread\test\test_sem.c(49): warning C4127: 条件表达式是常量
+     1>d:\vc程序\libthread_v1.0\libthread\libthread\libthread\test\test_sem.c(46): warning C4100: “arg”: 未引用的形参
          test_mutex.c
-     1>h:\c++程序\libthread\libthread\test\test_mutex.c(9): warning C4101: “r”: 未引用的局部变量
+     1>d:\vc程序\libthread_v1.0\libthread\libthread\libthread\test\test_mutex.c(9): warning C4101: “r”: 未引用的局部变量
+         test_rdwrlock.c
          winapi.c
          thread.c
-     1>h:\c++程序\libthread\libthread\src\win32\thread.c(341): warning C4204: 使用了非标准扩展 : 非常量聚合初始值设定项
-     1>h:\c++程序\libthread\libthread\src\win32\thread.c(343): warning C4204: 使用了非标准扩展 : 非常量聚合初始值设定项
+     1>d:\vc程序\libthread_v1.0\libthread\libthread\libthread\src\win32\thread.c(341): warning C4204: 使用了非标准扩展 : 非常量聚合初始值设定项
+     1>d:\vc程序\libthread_v1.0\libthread\libthread\libthread\src\win32\thread.c(343): warning C4204: 使用了非标准扩展 : 非常量聚合初始值设定项
          error.c
          main.c
          正在生成代码...
-     1>h:\c++程序\libthread\libthread\src\win32\thread.c(269): warning C4702: 无法访问的代码
-     1>h:\c++程序\libthread\libthread\src\win32\thread.c(311): warning C4715: “un_cond_init”: 不是所有的控件路径都返回值
-     1>h:\c++程序\libthread\libthread\test\test_mutex.c(51): warning C4715: “test_mutex”: 不是所有的控件路径都返回值
+     1>d:\vc程序\libthread_v1.0\libthread\libthread\libthread\src\win32\thread.c(269): warning C4702: 无法访问的代码
+     1>d:\vc程序\libthread_v1.0\libthread\libthread\libthread\src\win32\thread.c(311): warning C4715: “un_cond_init”: 不是所有的控件路径都返回值
+     1>d:\vc程序\libthread_v1.0\libthread\libthread\libthread\test\test_mutex.c(51): warning C4715: “test_mutex”: 不是所有的控件路径都返回值
        Link:
-         F:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"H:\C++程序\libThread\Debug\libthread.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"H:\C++程序\libThread\Debug\libthread.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"H:\C++程序\libThread\Debug\libthread.lib" /MACHINE:X86 /SAFESEH Debug\main.obj
+         E:\Program Files\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\VC程序\libthread_v1.0\libthread\libthread\Debug\libthread.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\VC程序\libthread_v1.0\libthread\libthread\Debug\libthread.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\VC程序\libthread_v1.0\libthread\libthread\Debug\libthread.lib" /MACHINE:X86 /SAFESEH Debug\main.obj
          Debug\error.obj
          Debug\thread.obj
          Debug\winapi.obj
@@ -31,9 +32,9 @@
          Debug\test_sem.obj
          Debug\test_thread.obj
      1>main.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/OPT:LBR”规范)
-         libthread.vcxproj -> H:\C++程序\libThread\Debug\libthread.exe
-     1>已完成生成项目“H:\C++程序\libThread\libthread\libthread.vcxproj”(Build 个目标)的操作。
+         libthread.vcxproj -> D:\VC程序\libthread_v1.0\libthread\libthread\Debug\libthread.exe
+     1>已完成生成项目“D:\VC程序\libthread_v1.0\libthread\libthread\libthread\libthread.vcxproj”(Rebuild 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:02.54
+已用时间 00:00:08.38
