@@ -2,8 +2,51 @@
 
 
 #define  HAVA_RWLOCK_API()  (pInitializeSRWLock != NULL)
-#define  HAVA_COND_API()	(pInitializeConditionVariable == NULL)
+#define  HAVA_COND_API()	(pInitializeConditionVariable != NULL)
 
+static un_once_t once_t={0,NULL};
+
+void un_once(un_once_t* once,void(*callback)(void))
+{
+	if(once->is_init)
+		return;
+	else
+	{
+		int result;
+		HANDLE exit_event = NULL;
+		HANDLE create_event = NULL;
+		create_event = CreateEvent(NULL,TRUE,FALSE,NULL);
+		if(create_event)
+		{
+
+		}
+		//InterlockedCompareExchange是把目标操作数（第1参数所指向的内存中的数）与一个值（第3参数）比较，
+		//如果相等，则用另一个值（第2参数）与目标操作数（第1参数所指向的内存中的数）交换；InterlockedExchange是不比较直接交换。
+		//整个操作过程是锁定内存的，其它处理器不会同时访问内存，从而实现多处理器环境下的线程互斥。
+		//返回第一个参数的值
+		exit_event =InterlockedCompareExchangePointer(&once->event_,&create_event,NULL);
+		if(exit_event == NULL) //赢得该race
+		{
+			callback();
+			result = SetEvent(create_event);
+			assert(result);
+			once->is_init = 1;
+
+		}
+
+		else
+		{
+			CloseHandle(create_event);
+			result = WaitForSingleObject(exit_event,INFINITE);
+			assert(result == WAIT_OBJECT_0);
+
+			
+		}
+
+	}
+
+
+}
 static UINT _stdcall un_thread_start(void* arg)
 {
 	thread_ctx* tmp = (thread_ctx*)arg;
@@ -318,9 +361,9 @@ void un_cond_destroy(un_cond_t* cond)
 	}
 	else
 	{
-		if(CloseHandle(cond->fall_.signal_event_))
+		if(!CloseHandle(cond->fall_.signal_event_))
 			abort();
-		if(CloseHandle(cond->fall_.broadcas_event_))
+		if(!CloseHandle(cond->fall_.broadcas_event_))
 			abort();
 		DeleteCriticalSection(&cond->fall_.waiters_count_lock_);
 	}
@@ -369,7 +412,7 @@ void un_cond_wait(un_cond_t* cond,un_mutex_t* mutex)
 
 		 un_mutex_lock(mutex);
 		 if (result == WAIT_OBJECT_0 || result == WAIT_OBJECT_0 + 1)
-			 return 0;
+			 return ;
 			
 
 		 if (result == WAIT_TIMEOUT)
@@ -475,4 +518,9 @@ void un_barrier_wait(un_barrier_t* barrier)
 	un_sem_wait(&barrier->sem2);
 	un_sem_post(&barrier->sem2);
 
+}
+
+unsigned long  un_thread_self()
+{
+	return (unsigned long)GetCurrentThreadId();
 }

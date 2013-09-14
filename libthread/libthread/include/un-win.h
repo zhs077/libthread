@@ -46,5 +46,12 @@ typedef struct
 
 }un_barrier_t;
 
+typedef struct 
+{
+	HANDLE event_;
+	unsigned char is_init;
+
+}un_once_t;
+
 int init_winapi();
 #endif

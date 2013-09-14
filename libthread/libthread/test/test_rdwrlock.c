@@ -47,6 +47,7 @@ void test_rwlock()
 {	un_thread_t tid1,tid2,tid3;
 	int numbers[]={1,2,3};
 
+	init_winapi();
 	un_mutex_init(&mutex);
 	un_rwlock_init(&rwlock);
 	un_thread_create(&tid1,writer,&numbers[0]);
@@ -61,10 +62,10 @@ void test_rwlock()
 }
 
 
-//int main()
-//{
-//	
-//	test_rwlock();
-//
-//	return 0;
-//}
+int main()
+{
+
+	test_rwlock();
+
+	return 0;
+}

@@ -2,6 +2,8 @@
 #define _UN_H_
 #include <stdlib.h>
 #include <stdint.h>
+#include <stdio.h>
+#include <assert.h>
 #include "un_common.h"
 #ifdef WIN32
 #include "un-win.h"
@@ -47,6 +49,7 @@ extern "C"{
 	void un_barrier_wait(un_barrier_t* barrier);
 
 	void un_sleep(uint64_t millseconds);
+	unsigned long  un_thread_self();
 
 
 

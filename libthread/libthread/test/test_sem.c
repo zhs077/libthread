@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "un.h"
 
-#define N 1	//生产者消费者个数
+#define N 10	//生产者消费者个数
 #define M 10	//缓冲数目
 int in = 0;		//生产者产品的位置
 int out = 0;	//消费者取产品的位置
@@ -100,10 +100,10 @@ void testSem()
 	un_sem_destroy(&full_sem);
 	un_sem_destroy(&empty_sem);
 }
-// int main()
-// {
-// 	
-// 	testSem();
-// 
-// 	return 0;
-// }
+//int main()
+//{
+//
+//	testSem();
+//
+//	return 0;
+//}

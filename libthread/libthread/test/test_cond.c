@@ -66,31 +66,37 @@ void getter(void* arg)
 		get(n);
 
 }
-int main()
- {
-	 un_thread_t tid[4];
+
+void testcond() 
+{
+	un_thread_t tid[4];
 	init_winapi();
- 	assert(un_mutex_init(&mutex) == 0);
+	assert(un_mutex_init(&mutex) == 0);
 	assert(un_mutex_init(&mutex_full) == 0);
 	assert(un_mutex_init(&mutex_empty) == 0);
 	assert(un_cond_init(&cond_empty) == 0);
 	assert(un_cond_init(&cond_full) == 0);
 
 	un_thread_create(&tid[0],putter,NULL);
-	//un_thread_create(&tid[1],putter,NULL);
+	un_thread_create(&tid[1],putter,NULL);
 	un_thread_create(&tid[2],getter,NULL);
-	//un_thread_create(&tid[3],getter,NULL);
+	un_thread_create(&tid[3],getter,NULL);
 
 	un_thread_join(&tid[0]);
-//	un_thread_join(&tid[1]);
+	un_thread_join(&tid[1]);
 	un_thread_join(&tid[2]);
-//	un_thread_join(&tid[3]);
+	un_thread_join(&tid[3]);
 	un_mutex_destroy(&mutex);
 	un_cond_destroy(&cond_empty);
 	un_cond_destroy(&cond_full);
-
-
- 	
- 
- 	return 0;
- }
+}
+//int main()
+// {
+//	 testcond();
+//
+//
+//
+// 	
+// 
+// 	return 0;
+// }
