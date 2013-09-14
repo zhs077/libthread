@@ -2,7 +2,7 @@
 
 
 #define  HAVA_RWLOCK_API()  (pInitializeSRWLock != NULL)
-#define  HAVA_COND_API()	(pInitializeConditionVariable != NULL)
+#define  HAVA_COND_API()	(pInitializeConditionVariable == NULL)
 
 static UINT _stdcall un_thread_start(void* arg)
 {
@@ -331,14 +331,7 @@ void un_cond_wait(un_cond_t* cond,un_mutex_t* mutex)
 	if (HAVA_COND_API())
 	{
 		if(!pSleepConditionVariableCS(&cond->cond,mutex,INFINITE))
-		{
-			int e = GetLastError();
-
-
-		}
-
-
-		//abort();
+		abort();
 	}
 	else
 	{
@@ -376,6 +369,7 @@ void un_cond_wait(un_cond_t* cond,un_mutex_t* mutex)
 
 		 un_mutex_lock(mutex);
 		 if (result == WAIT_OBJECT_0 || result == WAIT_OBJECT_0 + 1)
+			 return 0;
 			
 
 		 if (result == WAIT_TIMEOUT)
